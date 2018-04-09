@@ -7,10 +7,7 @@
 struct player
 {
     char name[20];
-    int age;
-    int time;
 }p;
-
 //global variables
 int size=10;
 char board[10][10];
@@ -54,7 +51,7 @@ void setupGame()
             printf("Enter column: ");
             scanf("%d",&y);
             printf("\n");
-        }while(x<0||x>size-1||y<0||size-1 );
+        }while(x<0||x>size-1||y<0||y>size-1);
 
         if (board[x][y] == 'M')
         {
@@ -63,7 +60,11 @@ void setupGame()
             loss();
         }
         else
-        mineSweep(x,y);
+        {
+            mineSweep(x,y);
+            if(winCheck()==1)
+                win();
+        }
         printUserBoard();
     }
 }
@@ -71,11 +72,11 @@ void setupGame()
 void getInfo()
 {
     printf("------------------------------------\n");
-    printf("WELCOME TO MINESWEEPER\nA project by:\nAtishay Jain(RA1711003010553)\nReet Tuteja(RA1711003010561)\nShubhi Gupta(RA171100300567)\n");
+    printf("WELCOME TO MINESWEEPER\nA project by:\nAtishay Jain(RA1711003010553)\nReet Tuteja(RA1711003010561)\nShubhi Gupta(RA171100300567)\n\n");
     printf("------------------------------------\n");
     printf("Please enter name:");
     scanf("%s",p.name);
-    printf("\nHi %s, Remember if you step on a mine you lose! Use your brains to try and not blow up! Best of luck!\n\n",p.name);
+    printf("\nHi %s, Remember if you step on a mine you lose!Use your brains to try and not blow up! Best of luck!\n\n",p.name);
 }
 
 void setupMines()
